@@ -15,6 +15,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <package name="tools.dynamia.zk.addons.chartjs" language="xul/html" depends="zul,zul.wgt">
-    <script src="lib/Chart.bundle.min.js"/>
+	<script src="lib/Chart.bundle.min.js"/>
     <widget name="Chartjs"/>
 </package>
