@@ -16,7 +16,7 @@
 	<url>www.dynamia.tools/zk-addons</url>
 	<description>Chartjs ZK integration library</description>
 	<inceptionYear>2016</inceptionYear>
-	<version>2.7.4</version>
+	<version>3.6.2</version>
 
 	<organization>
 		<name>Dynamia Soluciones IT</name>
@@ -45,11 +45,11 @@
 	<properties>
 		<user>Mario Serrano Leones</user>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 		<netbeans.hint.license>apache20</netbeans.hint.license>
 
-		<zk.version>8.5.0</zk.version> <!-- 7.0.3 -->
+		<zk.version>9.6.0.1</zk.version>
 	</properties>
 
 	<dependencies>
@@ -72,6 +72,13 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+			<version>1.18.22</version>
+		</dependency>
+
 		<!-- <dependency>
 			<groupId>org.webjars.npm</groupId>
 			<artifactId>chart.js</artifactId>

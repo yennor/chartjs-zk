@@ -15,6 +15,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <package name="tools.dynamia.zk.addons.chartjs" language="xul/html" depends="zul,zul.wgt">
-	<script src="lib/chart.min.js"/>
+    <script src="lib/chart.min.js"/>
+    <!--
+    TODO: could we somehow do the loading conditionally? (Especially once we want to integrate plugins!)
+    -->
+    <script src="lib/chartjs-adapter-date-fns.bundle.min.js"/>
     <widget name="Chartjs"/>
 </package>

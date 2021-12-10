@@ -30,7 +30,6 @@ import java.io.IOException;
 public class Chartjs extends HtmlBasedComponent {
 
     public static final String TYPE_BAR = "bar";
-    public static final String TYPE_HORIZONTAL_BAR = "horizontalBar";
     public static final String TYPE_LINE = "line";
     public static final String TYPE_PIE = "pie";
     public static final String TYPE_SCATTER = "scatter";

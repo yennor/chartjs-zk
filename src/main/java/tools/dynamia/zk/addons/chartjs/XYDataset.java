@@ -15,6 +15,7 @@
  */
 package tools.dynamia.zk.addons.chartjs;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -39,6 +40,11 @@ public class XYDataset extends Dataset<Coordinate> {
     }
 
     public XYDataset addData(Number x, Number y) {
+        super.addData(new Coordinate(x, y));
+        return this;
+    }
+
+    public XYDataset addData(LocalDateTime x, Number y) {
         super.addData(new Coordinate(x, y));
         return this;
     }

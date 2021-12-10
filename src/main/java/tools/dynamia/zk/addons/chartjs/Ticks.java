@@ -13,6 +13,7 @@ public class Ticks extends LazyJSONObject {
     private String fontStyle;
     private Boolean reverse;
 
+    // TODO: everything here seems to have moved
    private Boolean beginAtZero;
    private Integer min;
    private Integer max;

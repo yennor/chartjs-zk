@@ -19,9 +19,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author Mario Serrano Leones
  */
+@Getter @Setter
 public class Dataset<T> extends LazyJSONObject {
 
     private String type;
@@ -57,7 +61,7 @@ public class Dataset<T> extends LazyJSONObject {
     private Boolean fill;
     private Boolean showLine;
     private Boolean spanGaps;
-    private Boolean steppedLine;
+    private Boolean stepped;
 
     private String xAxisID;
     private String yAxisID;
@@ -367,12 +371,12 @@ public class Dataset<T> extends LazyJSONObject {
         this.spanGaps = spanGaps;
     }
 
-    public Boolean getSteppedLine() {
-        return steppedLine;
+    public Boolean getStepped() {
+        return stepped;
     }
 
-    public void setSteppedLine(Boolean steppedLine) {
-        this.steppedLine = steppedLine;
+    public void setStepped(Boolean stepped) {
+        this.stepped = stepped;
     }
 
     @Override
@@ -642,7 +646,7 @@ public class Dataset<T> extends LazyJSONObject {
             dataset.setFill(fill);
             dataset.setShowLine(showLine);
             dataset.setSpanGaps(spanGaps);
-            dataset.setSteppedLine(steppedLine);
+            dataset.setStepped(steppedLine);
             dataset.xAxisID = this.xAxisID;
             dataset.yAxisID = this.yAxisID;
             dataset.setRadius(radius);

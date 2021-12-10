@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Mario Serrano Leones.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,9 @@
 package tools.dynamia.zk.addons.chartjs;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.TimeZone;
+
 import org.zkoss.json.JSONObject;
 
 /**
@@ -32,12 +35,36 @@ public class Coordinate extends JSONObject implements Serializable {
         setY(y);
     }
 
+    /*
+     * It assumes for the time, the java default time zone.
+     * Axe::type needs to be set to "time" for that to work
+     *
+     * TODO: give a chance to speficy timezone
+     */
+    public Coordinate(LocalDateTime x, Number y) {
+    	setX(x);
+    	setY(y);
+    }
+
     public Number getX() {
         return (Number) get("x");
     }
 
     public void setX(Number x) {
         put("x", x);
+    }
+
+    public void setX(LocalDateTime x) {
+    	// chart js. expects datetimes to be in miliseconds since epoch (It's possible
+    	// to send other times, but performance would be worse).
+//    	setX(x
+//    			.atZone(TimeZone.getDefault().toZoneId())
+//    			.toInstant()
+//    			.toEpochMilli());
+    	// this one here should be more performant than the above
+    	setX(x
+    			.atZone(TimeZone.getDefault().toZoneId())
+    			.toEpochSecond() * 1000);
     }
 
     public Number getY() {

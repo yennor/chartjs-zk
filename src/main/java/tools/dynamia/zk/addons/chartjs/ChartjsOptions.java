@@ -18,57 +18,21 @@ package tools.dynamia.zk.addons.chartjs;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author Mario Serrano Leones
  */
+@Getter @Setter
 public class ChartjsOptions extends LazyJSONObject {
 
     private String title;
     private boolean responsive = true;
+    private boolean maintainAspectRatio = true;
     private Scales scales;
     private Legend legend;
     private Tooltips tooltips;
-
-    public Legend getLegend() {
-        return legend;
-    }
-
-    public void setLegend(Legend legend) {
-        this.legend = legend;
-    }
-
-    public Tooltips getTooltips() {
-        return tooltips;
-    }
-
-    public void setTooltips(Tooltips tooltips) {
-        this.tooltips = tooltips;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public boolean isResponsive() {
-        return responsive;
-    }
-
-    public void setResponsive(boolean responsive) {
-        this.responsive = responsive;
-    }
-
-
-    public Scales getScales() {
-        return scales;
-    }
-
-    public void setScales(Scales scales) {
-        this.scales = scales;
-    }
 
     @Override
     public void init() {
@@ -80,6 +44,7 @@ public class ChartjsOptions extends LazyJSONObject {
             put("title", titleMap);
         }
         put("responsive", responsive);
+        put("maintainAspectRatio", maintainAspectRatio);
 
         if (scales != null) {
             scales.init();

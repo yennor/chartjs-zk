@@ -1,53 +1,32 @@
 package tools.dynamia.zk.addons.chartjs;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class Scales extends LazyJSONObject {
-
-    private List<Axe> xAxes = new ArrayList<Axe>();
-    private List<Axe> yAxes = new ArrayList<Axe>();
 
     public Scales() {
     }
 
     public Scales(Axe xAxe, Axe yAxe) {
-        addX(xAxe);
-        addY(yAxe);
+    	add("x", xAxe);
+        add("y", yAxe);
     }
 
-    public Scales addY(Axe yAxe) {
-        yAxes.add(yAxe);
-        return this;
-    }
-
-    public Scales addX(Axe xAxe) {
-        xAxes.add(xAxe);
+    public Scales add(String id, Axe axe) {
+        put(id, axe);
         return this;
     }
 
     @Override
     public void init() {
-        if (!xAxes.isEmpty()) {
-            for (Axe axe : xAxes){
-                axe.init();
+        if (!isEmpty()) {
+            for (Object axe : values()){
+                ((Axe)axe).init();
             }
-            put("xAxes", xAxes);
-        }
-
-        if (!yAxes.isEmpty()) {
-            for (Axe axe : yAxes){
-                axe.init();
-            }
-            put("yAxes", yAxes);
         }
     }
 
-    public List<Axe> getxAxes() {
-        return xAxes;
-    }
-
-    public List<Axe> getyAxes() {
-        return yAxes;
+    public Axe getAxe(String id) {
+    	return (Axe) get(id);
     }
 }
