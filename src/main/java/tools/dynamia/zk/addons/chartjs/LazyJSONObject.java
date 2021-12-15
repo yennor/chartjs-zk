@@ -15,12 +15,12 @@
  */
 package tools.dynamia.zk.addons.chartjs;
 
-import org.zkoss.json.JSONObject;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.zkoss.json.JSONObject;
 
 /**
  * @author Mario Serrano Leones
@@ -73,5 +73,12 @@ public class LazyJSONObject extends JSONObject {
             loadClassFields(fields, clazz.getSuperclass());
         }
     }
+
+    @Override
+	public String toJSONString(){
+    	init();
+		return super.toJSONString();
+	}
+
 
 }

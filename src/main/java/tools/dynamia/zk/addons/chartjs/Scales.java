@@ -1,7 +1,5 @@
 package tools.dynamia.zk.addons.chartjs;
 
-import java.util.Collection;
-
 public class Scales extends LazyJSONObject {
 
     public Scales() {

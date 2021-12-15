@@ -1,7 +1,5 @@
 package tools.dynamia.zk.addons.chartjs;
 
-import org.zkoss.zul.Grid;
-
 public class BarchartOptions extends ChartjsOptions {
 
     private Double barPercentage;
@@ -102,7 +100,8 @@ public class BarchartOptions extends ChartjsOptions {
             barchartOptions.setCategoryPercentage(categoryPercentage);
             barchartOptions.setBarThickness(barThickness);
             barchartOptions.setMaxBarThickness(maxBarThickness);
-            barchartOptions.setTitle(title);
+            // TODO: correct with new version
+            //barchartOptions.setTitle(title);
             barchartOptions.setResponsive(responsive);
             barchartOptions.setScales(scales);
             return barchartOptions;

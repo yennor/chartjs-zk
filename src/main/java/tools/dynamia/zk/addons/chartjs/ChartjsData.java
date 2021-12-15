@@ -26,7 +26,7 @@ import java.util.List;
 public class ChartjsData extends LazyJSONObject {
 
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
-    private List<String> labels = new ArrayList<String>();
+    private List<String> labels = new ArrayList<>();
     private final List<Dataset> datasets = new ArrayList<Dataset>();
 
     @Override

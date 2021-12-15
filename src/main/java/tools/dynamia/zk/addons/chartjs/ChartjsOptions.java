@@ -15,9 +15,8 @@
  */
 package tools.dynamia.zk.addons.chartjs;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,82 +24,28 @@ import lombok.Setter;
  * @author Mario Serrano Leones
  */
 @Getter @Setter
+@Builder
+@AllArgsConstructor
 public class ChartjsOptions extends LazyJSONObject {
 
-    private String title;
+    @Builder.Default
     private boolean responsive = true;
+    @Builder.Default
     private boolean maintainAspectRatio = true;
-    private Scales scales;
-    private Legend legend;
-    private Tooltips tooltips;
 
-    @Override
-    public void init() {
-        super.init();
-        if (title != null) {
-            Map<String, Object> titleMap = new HashMap<String, Object>();
-            titleMap.put("text", title);
-            titleMap.put("display", true);
-            put("title", titleMap);
-        }
-        put("responsive", responsive);
-        put("maintainAspectRatio", maintainAspectRatio);
+    @Builder.Default
+    private Scales scales = new Scales();
+    @Builder.Default
+    private Plugins plugins = new Plugins();
+    @Builder.Default
+    private Tooltips tooltips = new Tooltips();
 
-        if (scales != null) {
-            scales.init();
-            put("scales", scales);
-        }
-    }
-
-
-    public static final class Builder {
-        private String title;
-        private boolean responsive = true;
-        private Scales scales;
-        private Legend legend;
-        private Tooltips tooltips;
-
-        private Builder() {
-        }
-
-        public static Builder init() {
-            return new Builder();
-        }
-
-        public Builder title(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public Builder responsive(boolean responsive) {
-            this.responsive = responsive;
-            return this;
-        }
-
-        public Builder scales(Scales scales) {
-            this.scales = scales;
-            return this;
-        }
-
-        public Builder legend(Legend legend) {
-            this.legend = legend;
-            return this;
-        }
-
-        public Builder tooltips(Tooltips tooltips) {
-            this.tooltips = tooltips;
-            return this;
-        }
-
-        public ChartjsOptions build() {
-            ChartjsOptions chartjsOptions = new ChartjsOptions();
-            chartjsOptions.setTitle(title);
-            chartjsOptions.setResponsive(responsive);
-            chartjsOptions.setScales(scales);
-            chartjsOptions.setLegend(legend);
-            chartjsOptions.setTooltips(tooltips);
-            chartjsOptions.init();
-            return chartjsOptions;
-        }
-    }
+    // TODO: the whole option structure of chart js is a desaster
+    // => provide a builder to at least easily create general options with titles, etc.
+	public ChartjsOptions() {
+		scales = new Scales();
+		plugins = new Plugins();
+		tooltips = new Tooltips();
+		init();
+	}
 }

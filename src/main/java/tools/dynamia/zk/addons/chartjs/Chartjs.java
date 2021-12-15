@@ -15,18 +15,21 @@
  */
 package tools.dynamia.zk.addons.chartjs;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.IOException;
+
 import org.zkoss.lang.Objects;
 import org.zkoss.zk.ui.HtmlBasedComponent;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.sys.ContentRenderer;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Mario Serrano Leones Serrano
  */
+@Slf4j
 public class Chartjs extends HtmlBasedComponent {
 
     public static final String TYPE_BAR = "bar";
@@ -96,8 +99,23 @@ public class Chartjs extends HtmlBasedComponent {
     public void setOptions(ChartjsOptions options) {
         LazyJSONObject.init(options);
         if (!Objects.equals(this.options, options)) {
-            this.options = options;
-            smartUpdate("options", options);
+
+        	// TODO: that's ugly! if the title is already set
+        	// we'll override the title of options if it is null!
+        	// The whole story needs refactoring...
+        	Title newTitle = options.getPlugins().getTitle();
+			if (this.options != null
+        			&& this.options.getPlugins().getTitle().getText() != null
+        			&& newTitle.getText() == null) {
+        		newTitle.setText(this.options.getPlugins().getTitle().getText());
+        		newTitle.setDisplay(true);
+        	}
+
+			this.options = options;
+            log.debug("Chart JS options {}", this.options);
+            // TODO: test! Before the commented was written, which looks wrong to me, so i've corrected but never tested:
+            // smartUpdate("options", options);
+            smartUpdate("options", this);
         }
     }
 
@@ -111,12 +129,16 @@ public class Chartjs extends HtmlBasedComponent {
     }
 
     public String getTitle() {
-        return getOptions().getTitle();
+        return getOptions().getPlugins().getTitle().getText();
     }
 
     public void setTitle(String title) {
-        if (!Objects.equals(getOptions().getTitle(), title)) {
-            getOptions().setTitle(title);
+        Title titleObj = getOptions().getPlugins().getTitle();
+		if (!Objects.equals(titleObj.getText(), title)) {
+            titleObj.setText(title);
+            titleObj.setDisplay(true);
+            titleObj.init();
+            smartUpdate("title", getOptions().getPlugins());
             smartUpdate("options", getOptions());
         }
     }

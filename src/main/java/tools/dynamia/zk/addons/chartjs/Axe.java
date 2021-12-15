@@ -3,6 +3,9 @@ package tools.dynamia.zk.addons.chartjs;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * The linear scale is use to chart numerical data. It can be placed on either the x or y axis.
  * The scatter chart type automatically configures a line chart to use one of these scales for the x axis.
@@ -18,6 +21,8 @@ public class Axe extends LazyJSONObject {
     private List<GridLine> gridLines = new ArrayList<GridLine>();
     private Ticks ticks;
     private ScaleLabel scaleLabel;
+    @Getter @Setter
+    private Time time;
 
 
     public Axe addGridLine(GridLine gridLine) {
@@ -100,6 +105,7 @@ public class Axe extends LazyJSONObject {
         private List<GridLine> gridLines = new ArrayList<GridLine>();
         private Ticks ticks;
         private ScaleLabel scaleLabel;
+        private Time time;
 
         private Builder() {
         }
@@ -148,6 +154,11 @@ public class Axe extends LazyJSONObject {
             return this;
         }
 
+        public Builder time(Time time) {
+            this.time = time;
+            return this;
+        }
+
         public Axe build() {
             Axe axe = new Axe();
             axe.setDisplay(display);
@@ -158,6 +169,7 @@ public class Axe extends LazyJSONObject {
             axe.setGridLines(gridLines);
             axe.setTicks(ticks);
             axe.setScaleLabel(scaleLabel);
+            axe.setTime(time);
             return axe;
         }
     }
