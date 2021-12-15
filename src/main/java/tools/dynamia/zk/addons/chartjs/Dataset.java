@@ -19,13 +19,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * @author Mario Serrano Leones
  */
-@Getter @Setter
 public class Dataset<T> extends LazyJSONObject {
 
     private String type;
@@ -382,6 +378,10 @@ public class Dataset<T> extends LazyJSONObject {
     @Override
     public void init() {
         super.init();
+        // TODO: that's just a stupid workaround, since we don't want that class jsonencoded
+        // it will lead to errors
+        remove("colorPalette");
+        // workaround end
         if (backgroundColor != null) {
             put("backgroundColor", backgroundColor);
         } else if (backgroundColors != null && !backgroundColors.isEmpty()) {
