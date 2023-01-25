@@ -69,7 +69,7 @@ public class LazyJSONObject extends JSONObject {
             }
         }
 
-        if (clazz.getSuperclass() != null) {
+        if (clazz != null && clazz.getSuperclass() != null) {
             loadClassFields(fields, clazz.getSuperclass());
         }
     }
